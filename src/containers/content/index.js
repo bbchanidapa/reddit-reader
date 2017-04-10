@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base/ui';
+import { Content } from 'native-base';
+import ContentItemList from '../../components/content/listitem';
 
 class ContentContainer extends Component {
   render() {
     return (
       <Content>
-        <Text>test</Text>
+        <ContentItemList />
       </Content>
     );
   }

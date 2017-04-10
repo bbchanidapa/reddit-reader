@@ -6,12 +6,9 @@ class HeaderContainer extends Component {
     return (
       <Header hasTabs >
         <Left>
-          {/*<Button transparent>
-            <Icon name="menu" />
-          </Button>*/}
         </Left>
         <Body>
-          <Title>Reddit Reader</Title>
+          <Title>{this.props.title}</Title>
         </Body>
       </Header>
     );
