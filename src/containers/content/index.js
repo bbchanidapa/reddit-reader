@@ -7,12 +7,13 @@ import FooterContainer from '../footer';
 import { APP_TITLE, NAVBAR_LIST, FOOTER_LIST } from '../../config/constants';
 import { fetchArticleListItem } from '../../actions/article';
 
-export default class ConentContainer extends Component {
+class ConentContainer extends Component {
   componentWillMount() {
-    // this.props.fetchArticleListItem();
+    this.props.fetchArticleListItem();
   }
 
   render() {
+    console.log(this.props.contentArticle)
     return (
       <Container>
         <HeaderContainer title={APP_TITLE} />
@@ -23,9 +24,9 @@ export default class ConentContainer extends Component {
   }
 }
 
-// export default connect(
-//   (state) => ({
-//     contentArticle: state,
-//   }),{
-//   fetchArticleListItem
-// })(ConentContainer);
+export default connect(
+  (state) => ({
+    contentArticle: state,
+  }),{
+  fetchArticleListItem
+})(ConentContainer);

@@ -8,13 +8,13 @@ function getResponseData(url, type) {
         dispatch(receiveArticleContentItem(res.data));
         switch (type) {
           case FETCH_ARTICLE:
-            dispatch(receiveArticleContentItem(res.data));
+            return dispatch(receiveArticleContentItem(res.data));
           case FETCH_ARTICLE_COMMENT:
-            dispatch(receiveArticleCommentContentItem(res.data));
+            return dispatch(receiveArticleCommentContentItem(res.data));
           case FETCH_SEARCH_ARTICLE:
-            dispatch(receiveSearchByWord(res.data));
+            return dispatch(receiveSearchByWord(res.data));
           default:
-            dispatch(receiveArticleContentItem(res.data));
+            return dispatch(receiveArticleContentItem(res.data));
         }
       })
       .catch(error => {
