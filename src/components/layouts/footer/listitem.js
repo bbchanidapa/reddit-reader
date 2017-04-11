@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { Footer ,FooterTab, Button, Icon } from 'native-base';
+import React, { Component, PropTypes } from 'react';
+import { Footer, FooterTab } from 'native-base';
 import FooterItem from './item';
 
 class ListItemFooter extends Component {
   renderRow() {
     return this.props.footer.map((item, index) => {
-      return(
+      return (
         <FooterTab key={`footer-tab-${index}`}>
           <FooterItem icon={item} />
         </FooterTab>
@@ -19,6 +19,10 @@ class ListItemFooter extends Component {
       </Footer>
     )
   }
+}
+
+ListItemFooter.propTypes = {
+  footer: PropTypes.node.isRequired
 }
 
 export default ListItemFooter;

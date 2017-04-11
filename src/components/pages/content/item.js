@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base';
+import { CardItem, Text, Body } from 'native-base';
 
 class ContentItem extends Component {
   render() {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Header, Title, Left, Body, Button, Icon } from 'native-base';
 
 class HeaderContainer extends Component {
@@ -18,4 +18,7 @@ class HeaderContainer extends Component {
   }
 }
 
+HeaderContainer.propTypes = {
+  title: PropTypes.node.isRequired
+}
 export default HeaderContainer;
