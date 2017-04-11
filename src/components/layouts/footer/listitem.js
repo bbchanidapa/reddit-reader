@@ -4,13 +4,11 @@ import FooterItem from './item';
 
 class ListItemFooter extends Component {
   renderRow() {
-    return this.props.footer.map((item, index) => {
-      return (
-        <FooterTab key={`footer-tab-${index}`}>
-          <FooterItem icon={item} />
-        </FooterTab>
-      );
-    });
+    return this.props.actionMenu.map(item => (
+      <FooterTab key={item.id}>
+        <FooterItem icon={item.icon} action={item.action} />
+      </FooterTab>
+    ));
   }
   render() {
     return (
@@ -22,7 +20,7 @@ class ListItemFooter extends Component {
 }
 
 ListItemFooter.propTypes = {
-  footer: PropTypes.node.isRequired
+  actionMenu: PropTypes.node.isRequired
 }
 
 export default ListItemFooter;

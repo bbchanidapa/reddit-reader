@@ -8,10 +8,10 @@ import SettingContainer from './containers/pages/setting';
 
 const Routers = () => (
   <Router hideNavBar>
-    <Scene key="root" component={LayoutContainer} >
-      <Scene key="initial" component={ContentContainer} initial passProps />
-      <Scene key="searchPage" component={SearchContainer} passProps />
-      <Scene key="settingPage" component={SettingContainer} passProps />
+    <Scene key="root" component={LayoutContainer} initial passProps title="Reddit Reader" >
+      <Scene key="contentPage" component={ContentContainer} initial title="Content" />
+      <Scene key="searchPage" component={SearchContainer} passProps title="Search" />
+      <Scene key="settingPage" component={SettingContainer} passProps title="Setting" />
     </Scene>
   </Router>
 );

@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 import { Button, Icon } from 'native-base';
-import { Actions } from "react-native-router-flux";
 
-class FooterItem extends Component {
-  render() {
-    return (
-      <Button>
-        <Icon name={this.props.icon} />
-      </Button>
-    );
-  }
-}
+const FooterItem = props => (
+  <Button onPress={props.action}>
+    <Icon name={props.icon} />
+  </Button>
+);
+
+FooterItem.propTypes = {
+  icon: PropTypes.string.isRequired,
+  action: PropTypes.func.isRequired
+};
 
 export default FooterItem;

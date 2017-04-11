@@ -21,4 +21,5 @@ class HeaderContainer extends Component {
 HeaderContainer.propTypes = {
   title: PropTypes.node.isRequired
 }
+
 export default HeaderContainer;

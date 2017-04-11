@@ -1,26 +1,6 @@
-// import React, { Component } from 'react';
-// import TabsContainer from './tabs';
-// import { NAVBAR_LIST } from '../../../config/constants';
-
-// export default class ConentContainer extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-
-//     };
-//   }
-//   render() {
-//     return (
-//       <TabsContainer navbar={NAVBAR_LIST} />
-//     );
-//   }
-// }
-
-
-
 import React, { Component, PropTypes } from 'react';
-import { Content, Body, Text } from 'native-base';
-
+import { Content, Body, Text, Button } from 'native-base';
+import { Actions } from 'react-native-router-flux';
 
 class ContentContainer extends Component {
   render() {
@@ -28,6 +8,9 @@ class ContentContainer extends Component {
       <Content>
         <Body>
           <Text>ContentContainer</Text>
+          <Button onPress={() => { Actions.searchPage({ type: 'replace' }) }} >
+            <Text> Actions to searchPage</Text>
+          </Button>
         </Body>
       </Content>
     );

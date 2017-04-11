@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Container } from 'native-base';
 import HeaderContainer from './layouts/header';
 import FooterContainer from './layouts/footer';
-import { APP_TITLE, FOOTER_LIST } from '../config/constants';
+import ACTION_PAGES from '../routers/layout';
 
 class LayoutContainer extends Component {
   constructor(props) {
@@ -14,9 +14,9 @@ class LayoutContainer extends Component {
   render() {
     return (
       <Container>
-        <HeaderContainer title={APP_TITLE} />
+        <HeaderContainer />
         {this.props.children.map(scene => React.createElement(scene.component))}
-        <FooterContainer footer={FOOTER_LIST} />
+        <FooterContainer actionMenu={ACTION_PAGES} />
       </Container>
     );
   }
