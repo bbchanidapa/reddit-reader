@@ -4,7 +4,6 @@ import FooterItem from './item';
 
 class ListItemFooter extends Component {
   renderRow() {
-    console.log(this.props)
     return this.props.footer.map((item, index) => {
       return(
         <FooterTab key={`footer-tab-${index}`}>
