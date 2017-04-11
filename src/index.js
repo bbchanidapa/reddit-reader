@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import { Container, Content  } from 'native-base';
-import HeaderContainer from './containers/header';
-import TabsContainer from './containers/header/navbar';
-import FooterContainer from './containers/footer';
-import { AppTitle, NavbarList, FooterList } from './config/constants';
+import { Provider } from 'react-redux';
+import configureStore from './store';
+import Routers from './router';
+import ContentContainer from './containers/content';
+const store = configureStore();
 
-export default class RedditReader extends Component {
+class App extends Component {
   render() {
     return (
-      <Container>
-        <HeaderContainer title={AppTitle} />
-        <TabsContainer navbar={NavbarList} />
-        <FooterContainer footer={FooterList} />
-      </Container>
+      <Provider store={store}>
+        <Routers />
+      </Provider>
     );
   }
 }
+
+export default App;

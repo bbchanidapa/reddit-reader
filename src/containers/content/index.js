@@ -1,15 +1,32 @@
 import React, { Component } from 'react';
-import { Content } from 'native-base';
-import ContentItemList from '../../components/content/listitem';
+import { Container, Content  } from 'native-base';
+import { connect } from 'react-redux';
+import HeaderContainer from '../header';
+import TabsContainer from '../header/navbar';
+import FooterContainer from '../footer';
+import { APP_TITLE, NAVBAR_LIST, FOOTER_LIST } from '../../config/constants';
+import { fetchArticleListItem } from '../../actions/article';
 
-class ContentContainer extends Component {
+class ConentContainer extends Component {
+  componentWillMount() {
+    this.props.fetchArticleListItem();
+  }
+
   render() {
+    console.log(this.props.contentArticle)
     return (
-      <Content>
-        <ContentItemList />
-      </Content>
+      <Container>
+        <HeaderContainer title={APP_TITLE} />
+        <TabsContainer navbar={NAVBAR_LIST} />
+        <FooterContainer footer={FOOTER_LIST} />
+      </Container>
     );
   }
 }
 
-export default ContentContainer;
+export default connect(
+  (state) => ({
+    contentArticle: state,
+  }),{
+  fetchArticleListItem
+})(ConentContainer);

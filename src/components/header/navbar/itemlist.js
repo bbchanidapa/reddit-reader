@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Tabs, Tab, TabHeading, Icon } from 'native-base';
-import ContentItem from '../../../containers/content';
+import ContentItem from '../../content/detail';
 
 class ListItemNavbar extends Component {
   renderRow() {
