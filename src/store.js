@@ -6,12 +6,9 @@ import devToolsEnhancer from 'remote-redux-devtools';
 export default (initialState) => {
   let middleware = applyMiddleware(thunk);
   if (process.env.NODE_ENV !== 'production') {
-    const devToolsExtension = window.devToolsExtension;
-    if (typeof devToolsExtension === 'function') {
-      middleware = compose(middleware, devToolsExtension());
-    }
+    middleware = compose(middleware, devToolsEnhancer());
   }
-  const store = createStore(reducers, initialState, middleware, devToolsEnhancer());
+  const store = createStore(reducers, initialState, middleware);
   if (module.hot) {
     module.hot.accept('./reducers', () => {
       store.replaceReducer(require('./reducers').default);
