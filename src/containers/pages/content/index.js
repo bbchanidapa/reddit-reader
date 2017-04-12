@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Content, Container, Spinner } from 'native-base';
 import { connect } from 'react-redux';
 import SortTypeBar from './cards';
-import { fetchArticleListItem, fetchArticleListItemBySort } from '../../../actions/article';
+import { fetchArticleListItem } from '../../../actions/article';
 import { SORTBY_LIST } from '../../../config/constants';
 
 class ContentContainer extends Component {
@@ -23,7 +23,7 @@ class ContentContainer extends Component {
         <Content>
           <SortTypeBar
             sortType={SORTBY_LIST}
-            actionSort={this.props.fetchArticleListItemBySort}
+            actionSort={this.props.fetchArticleListItem}
             contentArticle={this.props.contentArticle}
           />
         </Content>
@@ -50,7 +50,6 @@ export default connect(
   state => ({
     contentArticle: state.contentArticle
   }), {
-    fetchArticleListItem,
-    fetchArticleListItemBySort
+    fetchArticleListItem
   }
 )(ContentContainer)

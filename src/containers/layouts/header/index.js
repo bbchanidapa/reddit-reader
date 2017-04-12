@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { Header, Left, Content, Picker, Item } from 'native-base';
 import { fetchArticleListItemBySubReddit } from '../../../actions/article';
 import fecthListSubreddit from '../../../actions/subreddit';
+import { DEFAULT_SUDREDDIT } from '../../../actions/constants';
 
 class HeaderContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedItem: undefined,
-      selected1: 'key1',
+      selected: DEFAULT_SUDREDDIT,
       results: {
         items: []
       }
@@ -21,7 +21,7 @@ class HeaderContainer extends Component {
   onValueChange(value) {
     this.props.fetchArticleListItemBySubReddit(value);
     this.setState({
-      selected1: value
+      selected: value
     });
   }
   renderSubRedditItem() {
@@ -37,7 +37,7 @@ class HeaderContainer extends Component {
             mode="dropdown"
             textStyle={{ color: 'white' }}
             style={{ color: 'white' }}
-            selectedValue={this.state.selected1}
+            selectedValue={this.state.selected}
             onValueChange={this.onValueChange.bind(this)}
           >
             {this.renderSubRedditItem.apply(subRedditItems)}
