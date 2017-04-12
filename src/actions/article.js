@@ -1,32 +1,5 @@
-import axios from 'axios';
-import { DEFAULT_API_ENDPOINT, DEFAULT_TAG, FETCH_ARTICLE, FETCH_ARTICLE_COMMENT, FETCH_SEARCH_ARTICLE } from './constants';
-
-function getResponseData(url, type) {
-  return (dispatch) => {
-    return axios.get(url)
-      .then(res => {
-        dispatch(receiveArticleContentItem(res.data));
-        switch (type) {
-          case FETCH_ARTICLE:
-            return dispatch(receiveArticleContentItem(res.data));
-          case FETCH_ARTICLE_COMMENT:
-            return dispatch(receiveArticleCommentContentItem(res.data));
-          case FETCH_SEARCH_ARTICLE:
-            return dispatch(receiveSearchByWord(res.data));
-          default:
-            return dispatch(receiveArticleContentItem(res.data));
-        }
-      })
-      .catch(error => {
-        throw(error);
-      });
-  };
-}
-
-export function fetchArticleListItem() {
-  const url = `${DEFAULT_API_ENDPOINT}${DEFAULT_TAG}.json`;
-  return getResponseData(url, FETCH_ARTICLE);
-}
+import { DEFAULT_API_ENDPOINT, DEFAULT_SUDREDDIT, DEFAULT_SORT, FETCH_ARTICLE } from './constants';
+import getResponseData from './utils';
 
 function receiveArticleContentItem(json) {
   return {
@@ -35,24 +8,31 @@ function receiveArticleContentItem(json) {
   };
 }
 
-export function fetchArticleCommentListItem() {
-
+export function fetchArticleListItem() {
+  const url = `${DEFAULT_API_ENDPOINT}${DEFAULT_SUDREDDIT}${DEFAULT_SORT}.json?limit=5`;
+  return getResponseData(url, receiveArticleContentItem);
 }
 
-function receiveArticleCommentContentItem() {
-  return {
-    type: FETCH_ARTICLE_COMMENT,
-    payload: json
-  };
+export function fetchArticleListItemBySort(sortby) {
+  const url = `${DEFAULT_API_ENDPOINT}${DEFAULT_SUDREDDIT}/${sortby}.json?limit=5`;
+  return getResponseData(url, receiveArticleContentItem);
 }
 
-export function fetchSearchByWord() {
-
+export function fetchArticleListItemBySubReddit(subreddit = DEFAULT_SUDREDDIT) {
+  const url = `${DEFAULT_API_ENDPOINT}${subreddit}.json?limit=5`;
+  return getResponseData(url, receiveArticleContentItem);
 }
 
-function receiveSearchByWord() {
-  return {
-    type: FETCH_SEARCH_ARTICLE,
-    payload: json
-  };
-}
+// function receiveArticleCommentContentItem() {
+//   return {
+//     type: FETCH_ARTICLE_COMMENT,
+//     payload: json
+//   };
+// }
+
+// function receiveSearchByWord() {
+//   return {
+//     type: FETCH_SEARCH_ARTICLE,
+//     payload: json
+//   };
+// }
