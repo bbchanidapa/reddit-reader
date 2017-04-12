@@ -8,7 +8,6 @@ export default function contentArticle(state = [], action) {
       return action.payload;
     case FETCH_SEARCH_ARTICLE:
       return action.payload;
-      
     default:
       return state;
   }

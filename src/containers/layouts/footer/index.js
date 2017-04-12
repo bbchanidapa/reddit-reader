@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FooterItemList from '../../components/footer/listitem';
+import FooterItemList from '../../../components/layouts/footer/listitem';
 
 class FooterContainer extends Component {
   render() {

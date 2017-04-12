@@ -1,7 +1,7 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import reducers from './reducers';
 import devToolsEnhancer from 'remote-redux-devtools';
+import reducers from '../reducers';
 
 export default (initialState) => {
   let middleware = applyMiddleware(thunk);
@@ -10,8 +10,8 @@ export default (initialState) => {
   }
   const store = createStore(reducers, initialState, middleware);
   if (module.hot) {
-    module.hot.accept('./reducers', () => {
-      store.replaceReducer(require('./reducers').default);
+    module.hot.accept('../reducers', () => {
+      store.replaceReducer(reducers.default);
     });
   }
   return store;
