@@ -1,26 +1,73 @@
 import React, { Component, PropTypes } from 'react';
-import { Header, Title, Left, Right, Body, Button, Icon } from 'native-base';
+import { connect } from 'react-redux';
+import { Header, Left, Content, Picker, Item } from 'native-base';
+import { fetchArticleListItemBySubReddit } from '../../../actions/article';
+import fecthListSubreddit from '../../../actions/subreddit';
 
 class HeaderContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedItem: undefined,
+      selected1: 'key1',
+      results: {
+        items: []
+      }
+    }
+  }
+  componentWillMount() {
+    this.props.fecthListSubreddit();
+  }
+  onValueChange(value) {
+    this.props.fetchArticleListItemBySubReddit(value);
+    this.setState({
+      selected1: value
+    });
+  }
+  renderSubRedditItem() {
+    return this.map(item => (<Item label={item.toUpperCase()} value={item} inlineLabel />));
+  }
+  renderSubRedditBtn() {
+    if (this.props.subReddit.data) {
+      const subRedditItems = this.props.subReddit.data.children.map(item => item.data.display_name);
+      return (
+        <Content>
+          <Picker
+            iosHeader="Select one"
+            mode="dropdown"
+            textStyle={{ color: 'white' }}
+            style={{ color: 'white' }}
+            selectedValue={this.state.selected1}
+            onValueChange={this.onValueChange.bind(this)}
+          >
+            {this.renderSubRedditItem.apply(subRedditItems)}
+          </Picker>
+        </Content>
+      );
+    }
+    return true;
+  }
   render() {
     return (
       <Header hasTabs >
         <Left />
-        <Body>
-          <Title>{this.props.title}</Title>
-        </Body>
-        <Right>
-          <Button transparent>
-            <Icon name="ios-pricetag" />
-          </Button>
-        </Right>
+        {this.renderSubRedditBtn.call(this)}
       </Header>
     );
   }
 }
 
 HeaderContainer.propTypes = {
-  title: PropTypes.node.isRequired
+  fecthListSubreddit: PropTypes.func.isRequired,
+  fetchArticleListItemBySubReddit: PropTypes.func.isRequired,
+  subReddit: PropTypes.object
 }
 
-export default HeaderContainer;
+export default connect(
+  state => ({
+    subReddit: state.subReddit
+  }), {
+    fecthListSubreddit,
+    fetchArticleListItemBySubReddit
+  }
+)(HeaderContainer);

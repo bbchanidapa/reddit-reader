@@ -1,5 +1,5 @@
 export const DEFAULT_API_ENDPOINT = 'https://www.reddit.com/r/';
-export const DEFAULT_API_SUBREDDIT = 'https://www.reddit.com/subreddits/default.json';
+export const DEFAULT_API_SUBREDDIT = 'https://www.reddit.com/subreddits/default.json?limit=100';
 export const DEFAULT_SUDREDDIT = 'all';
 export const DEFAULT_SORT = '/hot';
 export const FETCH_LIST_SUDREDDIT = 'FETCH_LIST_SUDREDDIT';
